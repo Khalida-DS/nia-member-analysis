@@ -81,7 +81,7 @@ Each segment gets one clear recommended product and a campaign priority level.
 
 The interactive app lets you explore all results without running any code.
 
-**[→ Open the Live Demo](https://khalida-ds-nia-member-analysis-app.streamlit.app)**
+**[→ Open the Live Demo](https://nia-member-analysis-gcfpuvp2upf6m8ebrgvq3j.streamlit.app/)**
 
 The app has 5 pages:
 
