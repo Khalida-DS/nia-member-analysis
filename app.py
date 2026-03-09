@@ -1,5 +1,5 @@
 """
-AAA Northeast — Member Intelligence Platform
+NorthShield Insurance Association — Member Intelligence Platform
 Portfolio Demo App
 """
 import streamlit as st
@@ -13,7 +13,7 @@ from pathlib import Path
 
 # ── Page config ───────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="AAA Northeast — Member Intelligence",
+    page_title="NorthShield Insurance Association — Member Intelligence",
     page_icon="🚗",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -259,7 +259,7 @@ with st.sidebar:
     st.markdown("""
     <div style="padding:1rem 0 1.5rem 0">
       <div style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:#FFFFFF;line-height:1.2">
-        AAA Northeast
+        NorthShield Insurance Association
       </div>
       <div style="font-size:0.78rem;color:#A8C4E8;margin-top:0.2rem;letter-spacing:0.06em;text-transform:uppercase">
         Member Intelligence Platform
@@ -341,7 +341,7 @@ if page == "🏠  Overview":
     with col_l:
         st.markdown("### What This System Does")
         st.markdown("""
-        AAA Northeast serves **3,511 member households** across New England. Most households hold
+        NorthShield Insurance Association serves **3,511 member households** across New England. Most households hold
         only 1–2 products despite being eligible for 9. Without a targeting model, marketing
         contacts all households about all products — 31,599 outreach touches — most of which
         are wasted budget.
@@ -702,7 +702,7 @@ elif page == "⚙️  Technical Deep Dive":
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("#### Repository Structure")
-            st.markdown("""<div class="code-block">aaa-northeast-analysis/
+            st.markdown("""<div class="code-block">nia-member-analysis/
 ├── configs/
 │   └── settings.yaml         # single source of truth
 ├── src/
