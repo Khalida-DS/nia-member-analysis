@@ -42,3 +42,6 @@ htmlcov/
 .idea/
 *.swp
 .DS_Store
+# Demo data — processed features only, no raw PII
+!data/processed/*.parquet
+!models/artifacts/*.pkl
