@@ -3,7 +3,7 @@
 > **Which members should we call? About which product? In what order?**
 > This system answers all three questions — automatically, for every household.
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Streamlit-FF4B4B?style=for-the-badge)](https://khalida-ds-nia-member-analysis-app.streamlit.app)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Streamlit-FF4B4B?style=for-the-badge)](https://nia-member-analysis-gcfpuvp2upf6m8ebrgvq3j.streamlit.app/)
 [![CI](https://github.com/Khalida-DS/nia-member-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/Khalida-DS/nia-member-analysis/actions)
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-blue?style=flat-square)](https://www.python.org)
 
