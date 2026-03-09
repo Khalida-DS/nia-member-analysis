@@ -1,129 +1,216 @@
-# AAA Northeast Member Analysis
+# NorthShield Insurance Association — Member Intelligence Platform
 
-> **Cross-sell propensity scoring · ERS cost prediction · Member segmentation**
+> **Which members should we call? About which product? In what order?**
+> This system answers all three questions — automatically, for every household.
 
-[![CI](https://github.com/Khalida-DS/aaa-northeast-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/aaa-northeast-analysis/actions)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Streamlit-FF4B4B?style=for-the-badge)](https://khalida-ds-nia-member-analysis-app.streamlit.app)
+[![CI](https://github.com/Khalida-DS/nia-member-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/Khalida-DS/nia-member-analysis/actions)
+[![Python 3.11](https://img.shields.io/badge/Python-3.11-blue?style=flat-square)](https://www.python.org)
 
 ---
 
-## Business Problem
+## The Problem — In Plain English
 
-AAA Northeast serves ~6 million members across six states. Cross-sell campaigns cost **$5–15 per contact** and achieve less than 5% conversion when untargeted. This project replaces scatter-shot outreach with data-driven household scoring.
+NorthShield Insurance Association (NIA) has **3,511 member households**. Most of them hold only 1 or 2 products,
+even though they are eligible for 9 — insurance, credit cards, travel services, and more.
 
-| Question | Approach | Business Metric |
-|----------|----------|-----------------|
-| Who is most likely to buy each product? | Per-product binary classifiers | **Lift @ Top 10% ≥ 2.0×** |
-| How much will a household cost in ERS next year? | Regression on log-transformed cost | R² > 0.25 |
-| What behavioural segments exist? | K-Means on propensity scores | Silhouette ≥ 0.30 |
-| What should we recommend to each household? | Cluster → segment action table | Full household coverage |
+The marketing team used to contact **everyone about everything**. That meant:
+
+- 📬 31,599 outreach contacts per campaign cycle
+- 💸 $5–15 cost per contact
+- 😕 Less than 5% of contacts converting to a sale
+- 🗑️ 95% of the marketing budget wasted
+
+**This project changes that.** Instead of guessing, we use member behaviour data to predict
+who is likely to buy what — and focus the marketing budget only on the households most
+likely to say yes.
+
+---
+
+## The Solution — What This System Does
+
+Think of it like a smart assistant that reads the history of every household and says:
+*"This family has used claims service 4 times this year and earns $110K —
+they are very likely to want NIA insurance next."*
+
+The system does three things:
+
+### 1. 🎯 Propensity Scoring — Who will buy what?
+For each of 6 products, a model scores every household from 0 to 1.
+A score of 0.75 means "75% likely to buy." Marketing contacts the top scorers first.
+
+### 2. 💰 Cost Prediction — What will this household cost us?
+A separate model predicts how much claims service each household will use next year.
+This helps budget planning and identifies households that need a premium service plan.
+
+### 3. 🗂️ Segmentation — How do we group households for campaigns?
+Households are grouped into 8 segments based on their purchase likelihood profiles.
+Each segment gets one clear recommended product and a campaign priority level.
+
+---
+
+## Results — By The Numbers
+
+| What We Measure | Result | What It Means in Plain English |
+|---|---|---|
+| **Best model quality (AUC)** | 0.89 | Near-perfect ability to separate buyers from non-buyers |
+| **Best campaign efficiency (Lift@10%)** | 5.71× | Contact 351 households and find as many buyers as contacting 2,005 at random |
+| **Cost prediction accuracy (R²)** | 0.59 | Model explains 59% of cost variation using only member behaviour |
+| **Households scored** | 3,511 | Every household in the member base gets a score and a recommendation |
+| **Households ready for offers** | 1,924 (55%) | Active campaign targets with propensity scores above threshold |
+| **Households in nurture queue** | 1,587 (45%) | Not ready now — re-score in 6 months after engagement |
+
+---
+
+## The 8 Marketing Segments
+
+| Priority | Segment | Size | Recommended Offer | Why |
+|---|---|---|---|---|
+| 🔴 Highest | High High Claims Members | 177 hh | INS Client | 97% use claims service — insurance is the natural next step |
+| 🔴 Highest | Long-Tenure Loyalists | 257 hh | FSV Credit Card | 42-year average tenure, already hold 2+ products |
+| 🔴 Highest | High-Income Prospects | 265 hh | INS Client | $108K average income, financially ready |
+| 🟡 Second Wave | Long-Tenure Single | 497 hh | INS Client | Room to grow from 1 product to 2 |
+| 🟡 Second Wave | Active Claims Users | 463 hh | INS Client | High engagement, moderate conversion readiness |
+| 🟡 Second Wave | Established Members | 265 hh | INS Client | Stable members not yet cross-sold |
+| ⏸ Nurture | Dormant Long-Tenure | 1,071 hh | No offer yet | Low propensity — preserve relationship, re-score in 6 months |
+| ⏸ Nurture | Disengaged Claims Users | 516 hh | No offer yet | High claims usage but no cross-sell signal yet |
+
+---
+
+## 🖥️ Live Demo
+
+The interactive app lets you explore all results without running any code.
+
+**[→ Open the Live Demo](https://khalida-ds-nia-member-analysis-app.streamlit.app)**
+
+The app has 5 pages:
+
+- **Overview** — KPIs, pipeline architecture, recommendation distribution
+- **Model Performance** — AUC scores, lift charts, leakage investigation walkthrough
+- **Segment Explorer** — Browse all 8 segments with profiles and business rationale
+- **Household Lookup** — Score any household live against all 6 product models
+- **Technical Deep Dive** — Architecture decisions, test suite, before/after comparisons
+
+---
+
+## How the Pipeline Works
+
+Raw data comes in as 21,344 individual service call records.
+The pipeline transforms them into a clean household-level dataset and trains the models.
+
+```
+Raw CSV (21,344 service call rows)
+    │
+    ├─ Aggregate costs per member        ← sum claims costs BEFORE deduplication
+    ├─ Filter cancelled members          ← remove noise from the data
+    ├─ Encode income bands to numbers    ← "$50K–$75K" becomes 62500
+    ├─ Deduplicate to one row per member ← attach aggregated cost history
+    ├─ Aggregate to one row per household← products are household decisions
+    ├─ Engineer 50+ new features         ← total_calls, is_high_income, tenure...
+    └─ Build model matrix                ← 140 final features, zero nulls
+    │
+    ├─→ 6 Classification models          → AUC 0.82–0.89
+    ├─→ 1 Regression model               → R² = 0.59
+    └─→ Clustering + Action Table        → 8 segments, 1 recommendation each
+```
+
+**Run everything in one command:**
+```bash
+python -m src.pipelines.train --stage all
+```
+
+---
+
+## Technical Highlights (For Data Scientists & Engineers)
+
+- **No data leakage** — Three-round investigation removed cost-year columns, then
+  a proxy feature (`cost_trend`) discovered through feature importance inspection
+- **Cluster on propensity, not demographics** — K-Means on predicted probabilities
+  produces marketing-actionable segments, not demographic descriptions
+- **68 unit tests** — Every function verified before the pipeline runs on real data
+- **Stage-by-stage CLI** — `--stage preprocess/classify/regress/cluster/all`
+  so each component can be developed and debugged independently
+- **YAML config** — Every constant (k=8, test_size=0.20, income bands) lives in
+  `configs/settings.yaml` — one file to change, everything updates
+- **Typed dataclass config** — `cfg.training.test_size` catches typos at import
+  time; raw dict access fails silently at runtime
+
+---
+
+## Project Structure
+
+```
+nia-member-analysis/
+├── configs/settings.yaml        ← single source of truth for all constants
+├── src/
+│   ├── config.py                ← typed settings loader
+│   ├── features/preprocessing.py← 10-step raw → household pipeline
+│   ├── models/
+│   │   ├── classifier.py        ← per-product propensity models
+│   │   ├── regressor.py         ← claims cost prediction (Huber)
+│   │   └── clustering.py        ← K-Means on propensity scores
+│   ├── evaluation/
+│   │   ├── metrics.py           ← AUC, Lift@k, RMSE, R²
+│   │   └── plots.py             ← all visualisations
+│   └── pipelines/train.py       ← CLI orchestrator
+├── tests/                       ← 68 unit tests
+├── notebooks/                   ← 4 analysis notebooks
+├── app.py                       ← Streamlit portfolio demo
+├── Dockerfile
+└── requirements.txt
+```
 
 ---
 
 ## Quick Start
+
 ```bash
-# 1. Clone and enter the repo
-git clone https://github.com/YOUR_USERNAME/aaa-northeast-analysis
-cd aaa-northeast-analysis
+# Clone
+git clone https://github.com/Khalida-DS/nia-member-analysis
+cd nia-member-analysis
 
-# 2. Create and activate virtual environment
-python3 -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
+# Create environment
+conda create -n nia-member-analysis python=3.11
+conda activate nia-member-analysis
 
-# 3. Install dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# 4. Add raw data
+# Add your data
 cp /path/to/member_sample.csv data/raw/member_sample.csv
 
-# 5. Run the full pipeline
+# Run pipeline
 python -m src.pipelines.train --stage all
 
-# 6. Run tests
-pytest tests/ -v --cov=src
+# Run tests
+pytest tests/ -v
+
+# Launch demo app
+streamlit run app.py
 ```
 
 ---
 
-## Repository Structure
-```
-aaa-northeast-analysis/
-│
-├── configs/
-│   └── settings.yaml          ← all constants — one place to change everything
-│
-├── src/
-│   ├── config.py              ← typed settings loader
-│   ├── features/
-│   │   └── preprocessing.py   ← 10-step raw→household pipeline
-│   ├── models/
-│   │   ├── classifier.py      ← per-product propensity models
-│   │   ├── regressor.py       ← ERS cost prediction
-│   │   └── clustering.py      ← K-Means segmentation
-│   ├── evaluation/
-│   │   ├── metrics.py         ← AUC, F1, Lift@10%, RMSE, R²
-│   │   └── plots.py           ← all figures (one style, one place)
-│   └── pipelines/
-│       └── train.py           ← CLI orchestrator (--stage all/preprocess/…)
-│
-├── tests/                     ← 49+ unit tests, one file per src module
-├── notebooks/                 ← EDA and results notebooks
-├── data/raw/                  ← source CSV (gitignored)
-├── models/artifacts/          ← .pkl + metadata JSON (gitignored)
-├── reports/figures/           ← generated charts (gitignored)
-│
-├── Dockerfile
-├── requirements.txt
-├── pyproject.toml
-└── .gitignore
-```
+## Tech Stack
+
+| Layer | Tools |
+|---|---|
+| Language | Python 3.11 |
+| ML Models | scikit-learn, XGBoost |
+| Data | pandas, numpy, pyarrow |
+| Visualisation | matplotlib, seaborn |
+| App | Streamlit |
+| Testing | pytest, pytest-cov |
+| CI/CD | GitHub Actions |
+| Containerisation | Docker |
 
 ---
 
-## Pipeline Stages
-```bash
-python -m src.pipelines.train --stage preprocess   # raw CSV → parquet feature store
-python -m src.pipelines.train --stage classify     # train 7 propensity classifiers
-python -m src.pipelines.train --stage regress      # train ERS cost regressor
-python -m src.pipelines.train --stage cluster      # fit K-Means, build action table
-python -m src.pipelines.train --stage all          # run everything in sequence
-```
+## About This Project
 
----
+This project was built as a complete end-to-end machine learning system —
+from raw transactional data through to a deployed interactive application.
+Every design decision prioritises production readiness: reproducible pipelines,
+honest model evaluation, and results that a non-technical stakeholder can act on.
 
-## Docker
-```bash
-docker build -t aaa-northeast .
-docker run --rm \
-  -v $(pwd)/data:/app/data \
-  -v $(pwd)/models:/app/models \
-  -v $(pwd)/reports:/app/reports \
-  aaa-northeast
-```
-
----
-
-## Methodology
-
-**Preprocessing** — Raw data arrives at the individual×service-call grain (21,344 rows). The pipeline aggregates to household level (~3,500 rows) because products are household decisions and marketing targets households, not individuals. ERS cost aggregation happens *before* deduplication to preserve full cost history.
-
-**Classification** — Separate model per product (buyer profiles differ). `class_weight='balanced'` handles imbalance without synthetic upsampling. 70/10/20 split with a dedicated validation set for hyperparameter selection keeps the test set truly held out. Lift@10% is the primary business metric.
-
-**Regression** — `np.log1p` transform before fitting handles the zero-inflated, right-skewed cost distribution. `np.expm1` recovers dollar-scale predictions. R²=0.15–0.30 is realistic; higher values signal leakage.
-
-**Clustering** — K-Means on predicted propensity scores groups members by purchase *likelihood*, not just demographics. Optimal k chosen by silhouette score. Each cluster maps to one recommended product in the action table.
-
----
-
-## Data Dictionary
-
-See [`data/README.md`](data/README.md) for full column descriptions and exclusion rationale.
-
----
-
-## Contributing
-
-1. Branch from `develop`
-2. Add tests for any new function
-3. All tests must pass: `pytest tests/ -v`
-4. Open a PR targeting `develop`
+**Author:** Khalida — [GitHub](https://github.com/Khalida-DS)
