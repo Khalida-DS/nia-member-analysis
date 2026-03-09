@@ -1,0 +1,27 @@
+[build-system]
+requires      = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name            = "aaa-northeast-member-analysis"
+version         = "1.0.0"
+description     = "Member segmentation and cross-sell propensity scoring for AAA Northeast"
+requires-python = ">=3.10"
+readme          = "README.md"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["src"]
+omit   = ["tests/*", "notebooks/*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under   = 65
+
+
+
+
+

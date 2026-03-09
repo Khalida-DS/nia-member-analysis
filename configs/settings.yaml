@@ -1,0 +1,136 @@
+# configs/settings.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# SINGLE SOURCE OF TRUTH for every constant in this project.
+# Change a value here → the entire system respects it.
+# A non-technical stakeholder should be able to read this file.
+# ─────────────────────────────────────────────────────────────────────────────
+
+project:
+  name: aaa-northeast-member-analysis
+  version: "1.0.0"
+  random_seed: 42
+  description: >
+    Cross-sell propensity scoring, ERS cost prediction, and member segmentation
+    for AAA Northeast's active household base (~3,500 households).
+
+paths:
+  raw_data:        data/raw/member_sample.csv
+  processed_data:  data/processed/features.parquet
+  household_data:  data/processed/households.parquet
+  cluster_data:    data/processed/cluster_input.parquet
+  recommendations: data/processed/recommendations.parquet
+  model_dir:       models/artifacts/
+  report_dir:      reports/figures/
+
+data:
+  # Only model products with adoption >= this threshold (too sparse = unreliable)
+  min_product_penetration: 0.05
+
+  # Keep only these member statuses
+  member_status_keep: ["ACTIVE", "PENDING"]
+
+  # Raw column names for the 9 product flags
+  product_cols:
+    - "FSV CMSI Flag"
+    - "FSV Credit Card Flag"
+    - "FSV Deposit Program Flag"
+    - "FSV Home Equity Flag"
+    - "FSV ID Theft Flag"
+    - "FSV Mortgage Flag"
+    - "INS Client Flag"
+    - "TRV Globalware Flag"
+    - "New Mover Flag"
+
+  # Columns that must NEVER be used — document every exclusion
+  exclude_cols:
+    - Race                        # protected attribute — fairness requirement
+    - "Reason Joined"             # >95% missing — unrecoverable
+    - "Cancel Date"               # target leakage — only set post-cancellation
+    - "Cancel Reason"             # target leakage — only set post-cancellation
+    - "Months from Join to Cancel"# target leakage — only set post-cancellation
+
+  # Income band → numeric midpoint mapping
+  income_map:
+    "Under 10K":       5000
+    "10-19,999":      15000
+    "20-29,999":      25000
+    "30-39,999":      35000
+    "40-49,999":      45000
+    "50-59,999":      55000
+    "60-69,999":      65000
+    "70-79,999":      75000
+    "80-89,999":      85000
+    "90-99,999":      95000
+    "100-149,999":   125000
+    "150 - 174,999": 162500
+    "175 - 199,999": 187500
+    "200 - 249,999": 225000
+    "250K+":         275000
+
+  # Credit score band → numeric midpoint
+  credit_map:
+    "499 & Less": 400
+    "500-549":    525
+    "550-599":    575
+    "600-649":    625
+    "650-699":    675
+    "700-749":    725
+    "750-799":    775
+    "800+":       825
+
+  # Number of children text → integer
+  children_map:
+    "No children":    0
+    "One Child":      1
+    "Two Children":   2
+    "Three Children": 3
+    "Four Children":  4
+    "Five Children":  5
+    "Six Children":   6
+
+training:
+  test_size:    0.20   # held-out test set — touched ONCE at the very end
+  val_size:     0.10   # carved from train — used for HP selection only
+  cv_folds:     5
+
+classification:
+  class_weight:            balanced   # handles imbalanced targets without upsampling
+  primary_metric:          roc_auc
+  lift_target_percentile:  0.10       # report Lift at top 10% of population
+
+  xgboost:
+    n_estimators:     300
+    max_depth:        4
+    learning_rate:    0.05
+    subsample:        0.8
+    colsample_bytree: 0.8
+    min_child_weight: 20
+
+  random_forest:
+    n_estimators:    200
+    max_depth:       8
+    min_samples_leaf: 15
+    max_features:    sqrt
+
+regression:
+  target_col:   "Total Cost sum"
+  ridge_alphas: [0.01, 0.1, 1.0, 10.0, 100.0]
+  lasso_alphas: [0.001, 0.01, 0.1, 1.0, 10.0]
+
+  random_forest:
+    n_estimators:    200
+    max_depth:       6
+    min_samples_leaf: 20
+
+clustering:
+  k_range: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  final_k:  8
+
+plotting:
+  dpi:    150
+  colors:
+    primary:   "#2E4A8C"
+    secondary: "#E84C3D"
+    positive:  "#27AE60"
+    warning:   "#F39C12"
+    neutral:   "#7F8C8D"

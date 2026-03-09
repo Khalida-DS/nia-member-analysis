@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Virtual environments — NEVER commit
+.venv/
+venv/
+env/
+.env
+# Conda environments
+.conda/
+# Data — raw data may contain PII; processed is regeneratable
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Models — large binaries; use artifact storage not git
+models/artifacts/*.pkl
+models/artifacts/*.joblib
+!models/artifacts/.gitkeep
+
+# Reports — regeneratable from code
+reports/figures/*
+!reports/figures/.gitkeep
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
