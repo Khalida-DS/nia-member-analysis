@@ -3,7 +3,7 @@
 > **Which members should we call? About which product? In what order?**
 > This system answers all three questions — automatically, for every household.
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Streamlit-FF4B4B?style=for-the-badge)](https://nia-member-analysis-gcfpuvp2upf6m8ebrgvq3j.streamlit.app/)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Streamlit-FF4B4B?style=for-the-badge)](https://nia-member-analysis-hpnnbzgehhutwztukiyepp.streamlit.app/)
 [![CI](https://github.com/Khalida-DS/nia-member-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/Khalida-DS/nia-member-analysis/actions)
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-blue?style=flat-square)](https://www.python.org)
 
@@ -81,7 +81,7 @@ Each segment gets one clear recommended product and a campaign priority level.
 
 The interactive app lets you explore all results without running any code.
 
-**[→ Open the Live Demo](https://nia-member-analysis-gcfpuvp2upf6m8ebrgvq3j.streamlit.app/)**
+**[→ Open the Live Demo](https://nia-member-analysis-hpnnbzgehhutwztukiyepp.streamlit.app/)**
 
 The app has 5 pages:
 
