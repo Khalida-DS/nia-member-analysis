@@ -28,11 +28,11 @@ T = {
 
     # ── Overview page ─────────────────────────────────────────────────────
     "ov_title":    {"en": "Member Intelligence Platform",         "fr": "Plateforme d'Intelligence Membres",      "ar": "منصة ذكاء الأعضاء"},
-    "ov_subtitle": {"en": "Cross-sell propensity scoring · ERS cost prediction · Behavioural segmentation",
+    "ov_subtitle": {"en": "Cross-sell propensity scoring · ERS cost prediction · Behavioral segmentation",
                     "fr": "Scoring de propension · Prédiction des coûts · Segmentation comportementale",
                     "ar": "تسجيل الميل للشراء · التنبؤ بالتكاليف · التقسيم السلوكي"},
 
-    "kpi_households":      {"en": "Households Analysed",    "fr": "Ménages analysés",       "ar": "الأسر المحللة"},
+    "kpi_households":      {"en": "Households Analyzed",    "fr": "Ménages analysés",       "ar": "الأسر المحللة"},
     "kpi_households_sub":  {"en": "↑ from 21,344 raw records","fr": "↑ de 21 344 enregistrements","ar": "↑ من 21,344 سجلاً"},
     "kpi_lift":            {"en": "Best Lift@10%",           "fr": "Meilleur Lift@10%",      "ar": "أفضل رفع@10%"},
     "kpi_lift_sub":        {"en": "FSV CMSI propensity model","fr": "Modèle de propension FSV CMSI","ar": "نموذج ميل FSV CMSI"},

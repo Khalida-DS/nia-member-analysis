@@ -161,12 +161,12 @@ lang = st.session_state.lang
 def prop_bar(value):
     pct = min(int(value * 100), 100)
     color = "#1E6B3C" if value > 0.5 else "#1B3A6B" if value > 0.25 else "#7D4E00"
-    return f"""
-    <div class="prop-bar-bg">
-      <div style="width:{pct}%;background:{color};border-radius:4px;height:8px"></div>
-    </div>
-    <small style="color:#6B7A99;font-size:0.72rem">{value:.3f}</small>
-    """
+    return (
+        f'<div class="prop-bar-bg">'
+        f'<div style="width:{pct}%;background:{color};border-radius:4px;height:8px"></div>'
+        f'</div>'
+        f'<small style="color:#6B7A99;font-size:0.72rem">{value:.3f}</small>'
+    )
 
 # ── Data loading ──────────────────────────────────────────────────────────
 @st.cache_data
