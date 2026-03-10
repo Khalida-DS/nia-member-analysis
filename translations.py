@@ -1,0 +1,196 @@
+"""
+translations.py — All UI text in English, French, and Arabic
+"""
+
+T = {
+    # ── App shell ──────────────────────────────────────────────────────────
+    "app_title": {
+        "en": "NorthShield Insurance Association",
+        "fr": "Association d'Assurance NorthShield",
+        "ar": "جمعية نورث شيلد للتأمين",
+    },
+    "app_subtitle": {
+        "en": "Member Intelligence Platform",
+        "fr": "Plateforme d'Intelligence Membres",
+        "ar": "منصة ذكاء الأعضاء",
+    },
+    "nav_overview":    {"en": "🏠  Overview",             "fr": "🏠  Vue d'ensemble",        "ar": "🏠  نظرة عامة"},
+    "nav_performance": {"en": "📊  Model Performance",    "fr": "📊  Performance des modèles","ar": "📊  أداء النماذج"},
+    "nav_segments":    {"en": "🎯  Segment Explorer",     "fr": "🎯  Explorateur de segments","ar": "🎯  استكشاف الشرائح"},
+    "nav_lookup":      {"en": "🔍  Household Lookup",     "fr": "🔍  Recherche de ménage",    "ar": "🔍  البحث عن الأسرة"},
+    "nav_technical":   {"en": "⚙️  Technical Deep Dive",  "fr": "⚙️  Analyse technique",     "ar": "⚙️  التعمق التقني"},
+
+    # ── Sidebar info ──────────────────────────────────────────────────────
+    "sidebar_dataset":  {"en": "Dataset",   "fr": "Données",     "ar": "البيانات"},
+    "sidebar_models":   {"en": "Models",    "fr": "Modèles",     "ar": "النماذج"},
+    "sidebar_stack":    {"en": "Stack",     "fr": "Technologies","ar": "التقنيات"},
+    "sidebar_language": {"en": "🌐 Language","fr": "🌐 Langue",   "ar": "🌐 اللغة"},
+
+    # ── Overview page ─────────────────────────────────────────────────────
+    "ov_title":    {"en": "Member Intelligence Platform",         "fr": "Plateforme d'Intelligence Membres",      "ar": "منصة ذكاء الأعضاء"},
+    "ov_subtitle": {"en": "Cross-sell propensity scoring · ERS cost prediction · Behavioural segmentation",
+                    "fr": "Scoring de propension · Prédiction des coûts · Segmentation comportementale",
+                    "ar": "تسجيل الميل للشراء · التنبؤ بالتكاليف · التقسيم السلوكي"},
+
+    "kpi_households":      {"en": "Households Analysed",    "fr": "Ménages analysés",       "ar": "الأسر المحللة"},
+    "kpi_households_sub":  {"en": "↑ from 21,344 raw records","fr": "↑ de 21 344 enregistrements","ar": "↑ من 21,344 سجلاً"},
+    "kpi_lift":            {"en": "Best Lift@10%",           "fr": "Meilleur Lift@10%",      "ar": "أفضل رفع@10%"},
+    "kpi_lift_sub":        {"en": "FSV CMSI propensity model","fr": "Modèle de propension FSV CMSI","ar": "نموذج ميل FSV CMSI"},
+    "kpi_r2":              {"en": "Claims Cost R²",          "fr": "R² coût des sinistres",  "ar": "R² تكلفة المطالبات"},
+    "kpi_r2_sub":          {"en": "Huber regressor · no leakage","fr": "Régresseur Huber · sans fuite","ar": "انحدار هوبر · بدون تسرب"},
+    "kpi_segments":        {"en": "Actionable Segments",     "fr": "Segments actionnables",  "ar": "الشرائح القابلة للتنفيذ"},
+    "kpi_segments_sub":    {"en": "2 segments in nurture queue","fr": "2 segments en file de nurture","ar": "شريحتان في قائمة التغذية"},
+
+    "ov_what_title":   {"en": "What This System Does",        "fr": "Ce que fait ce système",          "ar": "ما الذي يفعله هذا النظام"},
+    "ov_what_body":    {
+        "en": """NorthShield Insurance Association serves **3,511 member households**. Most households hold
+only 1–2 products despite being eligible for 9. Without a targeting model, marketing
+contacts all households about all products — 31,599 outreach touches — most wasted.\n\nThis platform answers three questions:\n\n**1. Who should we contact about which product?**\nSix propensity classifiers rank households by purchase likelihood.\n\n**2. How much will a household cost in claims?**\nA Huber regression model predicts total claims cost with R² = 0.59.\n\n**3. How do we group households for campaigns?**\nK-Means clustering on propensity scores produces 8 actionable segments.""",
+        "fr": """NorthShield Insurance Association sert **3 511 ménages membres**. La plupart ne détiennent
+que 1 à 2 produits alors qu'ils sont éligibles à 9. Sans modèle de ciblage, le marketing
+contacte tous les ménages pour tous les produits — 31 599 contacts — dont la plupart sont gaspillés.\n\nCette plateforme répond à trois questions :\n\n**1. Qui contacter pour quel produit ?**\nSix classificateurs de propension classent les ménages selon leur probabilité d'achat.\n\n**2. Quel sera le coût en sinistres d'un ménage ?**\nUn modèle Huber prédit le coût total des sinistres avec R² = 0,59.\n\n**3. Comment regrouper les ménages pour les campagnes ?**\nLe clustering K-Means sur les scores de propension produit 8 segments actionnables.""",
+        "ar": """تخدم جمعية نورث شيلد للتأمين **3,511 أسرة عضوة**. تمتلك معظم الأسر
+1-2 منتجات فقط رغم أهليتهم لـ 9 منتجات. بدون نموذج استهداف، يتواصل التسويق
+مع جميع الأسر بشأن جميع المنتجات — 31,599 تواصلاً — معظمها مضيعة للوقت.\n\nتجيب هذه المنصة على ثلاثة أسئلة:\n\n**1. من يجب الاتصال به بشأن أي منتج؟**\nستة نماذج ترتب الأسر حسب احتمالية الشراء.\n\n**2. كم ستكلف الأسرة في المطالبات؟**\nيتنبأ نموذج هوبر بإجمالي تكلفة المطالبات بمعامل R² = 0.59.\n\n**3. كيف نجمع الأسر لحملات التسويق؟**\nيُنتج تجميع K-Means على درجات الميل 8 شرائح قابلة للتنفيذ.""",
+    },
+    "ov_rec_title": {"en": "Recommendation Distribution", "fr": "Distribution des recommandations", "ar": "توزيع التوصيات"},
+    "ov_pipeline_title": {"en": "Pipeline Architecture", "fr": "Architecture du pipeline", "ar": "معمارية خط الأنابيب"},
+    "ov_run_first": {"en": "Run the pipeline first to generate recommendations.", "fr": "Exécutez d'abord le pipeline pour générer des recommandations.", "ar": "قم بتشغيل خط الأنابيب أولاً لتوليد التوصيات."},
+
+    # ── Model performance page ────────────────────────────────────────────
+    "mp_title":    {"en": "Model Performance",         "fr": "Performance des modèles",      "ar": "أداء النماذج"},
+    "mp_subtitle": {"en": "AUC · Lift@10% · R² · Feature importance — all models explained",
+                    "fr": "AUC · Lift@10% · R² · Importance des variables — tous les modèles expliqués",
+                    "ar": "AUC · رفع@10% · R² · أهمية المتغيرات — جميع النماذج موضحة"},
+    "mp_tab_class":  {"en": "🎯 Classification",  "fr": "🎯 Classification",   "ar": "🎯 التصنيف"},
+    "mp_tab_reg":    {"en": "📈 Regression",       "fr": "📈 Régression",       "ar": "📈 الانحدار"},
+    "mp_tab_feat":   {"en": "🔬 Feature Importance","fr": "🔬 Importance variables","ar": "🔬 أهمية المتغيرات"},
+    "mp_class_title":{"en": "Propensity Model Results — All 6 Products",
+                      "fr": "Résultats des modèles de propension — 6 produits",
+                      "ar": "نتائج نموذج الميل — جميع المنتجات الستة"},
+    "mp_class_desc": {"en": "Each model predicts the probability that a household will purchase a given product.",
+                      "fr": "Chaque modèle prédit la probabilité qu'un ménage achète un produit donné.",
+                      "ar": "يتنبأ كل نموذج باحتمالية شراء الأسرة لمنتج معين."},
+    "mp_skipped":    {"en": "Below 5% adoption threshold — insufficient positive examples",
+                      "fr": "En dessous du seuil d'adoption de 5% — exemples positifs insuffisants",
+                      "ar": "أقل من عتبة اعتماد 5% — أمثلة إيجابية غير كافية"},
+    "mp_lift_label": {"en": "more buyers in top 10%", "fr": "acheteurs supplémentaires dans le top 10%", "ar": "مشترٍ إضافي في أعلى 10%"},
+    "mp_lift_info":  {"en": "**How to read Lift@10%:** Contact the top 10% of households ranked by propensity score and find that many times more buyers compared to contacting random households.",
+                      "fr": "**Comment lire le Lift@10% :** Contactez les 10% supérieurs des ménages classés par score de propension et trouvez autant de fois plus d'acheteurs qu'en contactant des ménages aléatoires.",
+                      "ar": "**كيفية قراءة Lift@10%:** تواصل مع أعلى 10% من الأسر مرتبة حسب درجة الميل وستجد أضعافاً من المشترين مقارنة بالتواصل مع أسر عشوائية."},
+    "mp_reg_title":  {"en": "ERS Cost Regression Results",    "fr": "Résultats de la régression des coûts", "ar": "نتائج انحدار تكلفة المطالبات"},
+    "mp_best_model": {"en": "Best Model",                     "fr": "Meilleur modèle",                      "ar": "أفضل نموذج"},
+    "mp_robust":     {"en": "Robust to high-cost outliers",   "fr": "Robuste aux valeurs aberrantes coûteuses","ar": "مقاوم للقيم الشاذة عالية التكلفة"},
+    "mp_leakage":    {"en": "Three-Round Leakage Investigation","fr": "Investigation en 3 tours sur les fuites","ar": "تحقيق ثلاثي الجولات في تسرب البيانات"},
+    "mp_r2_accept":  {"en": "Why R² = 0.59 Is Accepted as Honest",
+                      "fr": "Pourquoi R² = 0,59 est accepté comme honnête",
+                      "ar": "لماذا يُقبل R² = 0.59 كنتيجة حقيقية"},
+    "mp_feat_title": {"en": "What Drives Each Model",         "fr": "Ce qui pilote chaque modèle",           "ar": "ما الذي يقود كل نموذج"},
+    "mp_feat_select":{"en": "Select a model to inspect",      "fr": "Sélectionnez un modèle à inspecter",    "ar": "اختر نموذجاً للفحص"},
+    "mp_no_meta":    {"en": "Run the pipeline to generate model metadata files.",
+                      "fr": "Exécutez le pipeline pour générer les fichiers de métadonnées.",
+                      "ar": "قم بتشغيل خط الأنابيب لتوليد ملفات البيانات الوصفية للنماذج."},
+
+    # ── Segments page ─────────────────────────────────────────────────────
+    "seg_title":    {"en": "Segment Explorer",          "fr": "Explorateur de segments",        "ar": "استكشاف الشرائح"},
+    "seg_subtitle": {"en": "8 behavioral segments · clustered on propensity scores · each mapped to one recommended product",
+                     "fr": "8 segments comportementaux · regroupés sur les scores de propension · chacun mappé à un produit recommandé",
+                     "ar": "8 شرائح سلوكية · مجمعة على درجات الميل · كل منها مخصص لمنتج موصى به"},
+    "seg_filter":   {"en": "Filter by priority",        "fr": "Filtrer par priorité",           "ar": "تصفية حسب الأولوية"},
+    "seg_all":      {"en": "All segments",              "fr": "Tous les segments",              "ar": "جميع الشرائح"},
+    "seg_high":     {"en": "Highest Priority",          "fr": "Priorité la plus haute",         "ar": "أعلى أولوية"},
+    "seg_second":   {"en": "Second Wave",               "fr": "Deuxième vague",                 "ar": "الموجة الثانية"},
+    "seg_nurture":  {"en": "Nurture",                   "fr": "Nurture",                        "ar": "التغذية"},
+    "seg_profile":  {"en": "Household Profile",         "fr": "Profil du ménage",               "ar": "ملف الأسرة"},
+    "seg_income":   {"en": "Avg income",                "fr": "Revenu moyen",                   "ar": "متوسط الدخل"},
+    "seg_tenure":   {"en": "Avg tenure",                "fr": "Ancienneté moyenne",             "ar": "متوسط مدة العضوية"},
+    "seg_products": {"en": "Avg products held",         "fr": "Produits détenus en moyenne",    "ar": "متوسط المنتجات المحتفظ بها"},
+    "seg_ers":      {"en": "Claims users",              "fr": "Utilisateurs de sinistres",      "ar": "مستخدمو المطالبات"},
+    "seg_action":   {"en": "Recommended Action",        "fr": "Action recommandée",             "ar": "الإجراء الموصى به"},
+    "seg_no_offer": {"en": "No immediate offer",        "fr": "Pas d'offre immédiate",          "ar": "لا عرض فوري"},
+    "seg_nurture_desc": {"en": "Propensity below threshold. Schedule re-score in 6 months after brand engagement.",
+                         "fr": "Propension sous le seuil. Planifier un re-scoring dans 6 mois après engagement.",
+                         "ar": "الميل أقل من العتبة. جدول إعادة التسجيل بعد 6 أشهر من التفاعل مع العلامة التجارية."},
+    "seg_lead":     {"en": "Lead with",                 "fr": "Commencer avec",                 "ar": "ابدأ بـ"},
+    "seg_contact":  {"en": "Contact all",               "fr": "Contacter tous les",             "ar": "تواصل مع جميع"},
+    "seg_hh":       {"en": "households in this wave",   "fr": "ménages dans cette vague",       "ar": "أسرة في هذه الموجة"},
+    "seg_propensity":{"en": "Purchase Propensity",      "fr": "Propension d'achat",             "ar": "ميل الشراء"},
+    "seg_why":      {"en": "Why this segment?",         "fr": "Pourquoi ce segment ?",          "ar": "لماذا هذه الشريحة؟"},
+    "seg_years":    {"en": "years",                     "fr": "ans",                            "ar": "سنة"},
+
+    # ── Household lookup page ─────────────────────────────────────────────
+    "lu_title":      {"en": "Household Lookup",             "fr": "Recherche de ménage",             "ar": "البحث عن الأسرة"},
+    "lu_subtitle":   {"en": "Score any household in real time — see propensity for all 6 products",
+                      "fr": "Scorer n'importe quel ménage en temps réel — voir la propension pour les 6 produits",
+                      "ar": "سجّل أي أسرة في الوقت الفعلي — اطلع على الميل لجميع المنتجات الستة"},
+    "lu_no_data":    {"en": "Run the preprocessing stage first.",
+                      "fr": "Exécutez d'abord l'étape de prétraitement.",
+                      "ar": "قم بتشغيل مرحلة المعالجة المسبقة أولاً."},
+    "lu_no_models":  {"en": "Run the classify stage first.",
+                      "fr": "Exécutez d'abord l'étape de classification.",
+                      "ar": "قم بتشغيل مرحلة التصنيف أولاً."},
+    "lu_select":     {"en": "Select a Household Key",       "fr": "Sélectionner une clé de ménage",  "ar": "اختر مفتاح الأسرة"},
+    "lu_random":     {"en": "🎲 Random household",          "fr": "🎲 Ménage aléatoire",             "ar": "🎲 أسرة عشوائية"},
+    "lu_scores":     {"en": "Propensity Scores — Household","fr": "Scores de propension — Ménage",   "ar": "درجات الميل — الأسرة"},
+    "lu_high":       {"en": "🟢 High",                      "fr": "🟢 Élevé",                        "ar": "🟢 مرتفع"},
+    "lu_medium":     {"en": "🟡 Medium",                    "fr": "🟡 Moyen",                        "ar": "🟡 متوسط"},
+    "lu_low":        {"en": "🔴 Low",                       "fr": "🔴 Faible",                       "ar": "🔴 منخفض"},
+    "lu_top_rec":    {"en": "Top Recommendation",           "fr": "Meilleure recommandation",        "ar": "أفضل توصية"},
+    "lu_lead":       {"en": "Lead with this offer",         "fr": "Commencer avec cette offre",      "ar": "ابدأ بهذا العرض"},
+    "lu_nurture":    {"en": "Below action threshold — nurture only",
+                      "fr": "Sous le seuil d'action — nurture uniquement",
+                      "ar": "أقل من عتبة الإجراء — تغذية فقط"},
+
+    # ── Technical page ────────────────────────────────────────────────────
+    "td_title":      {"en": "Technical Deep Dive",      "fr": "Analyse technique approfondie",   "ar": "التعمق التقني"},
+    "td_subtitle":   {"en": "Architecture · Code design · Engineering decisions · What a senior data scientist does differently",
+                      "fr": "Architecture · Conception du code · Décisions d'ingénierie · Ce qu'un data scientist senior fait différemment",
+                      "ar": "المعمارية · تصميم الكود · قرارات الهندسة · ما يفعله عالم البيانات الأول بشكل مختلف"},
+    "td_tab_arch":   {"en": "🏗 Architecture",           "fr": "🏗 Architecture",                 "ar": "🏗 المعمارية"},
+    "td_tab_test":   {"en": "🧪 Testing",                "fr": "🧪 Tests",                        "ar": "🧪 الاختبار"},
+    "td_tab_design": {"en": "📐 Design Decisions",       "fr": "📐 Décisions de conception",      "ar": "📐 قرارات التصميم"},
+    "td_repo":       {"en": "Repository Structure",      "fr": "Structure du dépôt",              "ar": "هيكل المستودع"},
+    "td_decisions":  {"en": "Key Engineering Decisions", "fr": "Décisions d'ingénierie clés",     "ar": "قرارات الهندسة الرئيسية"},
+    "td_commands":   {"en": "Pipeline Execution Commands","fr": "Commandes d'exécution du pipeline","ar": "أوامر تنفيذ خط الأنابيب"},
+    "td_tests":      {"en": "Test Suite — 68 Assertions","fr": "Suite de tests — 68 assertions",  "ar": "مجموعة الاختبارات — 68 تأكيداً"},
+    "td_tests_desc": {"en": "Tests verify every function before the pipeline runs on 21,000 rows.",
+                      "fr": "Les tests vérifient chaque fonction avant que le pipeline s'exécute sur 21 000 lignes.",
+                      "ar": "تتحقق الاختبارات من كل دالة قبل تشغيل خط الأنابيب على 21,000 صف."},
+    "td_before_after":{"en": "Senior vs Junior: What Changed in This Project",
+                       "fr": "Senior vs Junior : Ce qui a changé dans ce projet",
+                       "ar": "أول مقابل مبتدئ: ما الذي تغير في هذا المشروع"},
+    "td_before":     {"en": "BEFORE",                    "fr": "AVANT",                           "ar": "قبل"},
+    "td_after":      {"en": "AFTER",                     "fr": "APRÈS",                           "ar": "بعد"},
+
+    # Segment reasons
+    "seg_reason_7":  {"en": "97% active claims users — high service reliance signals insurance need. Strongest conversion candidate.",
+                      "fr": "97% d'utilisateurs actifs de sinistres — forte dépendance aux services signale un besoin d'assurance.",
+                      "ar": "97% من مستخدمي المطالبات النشطين — الاعتماد الكبير على الخدمات يشير إلى الحاجة للتأمين."},
+    "seg_reason_3":  {"en": "42-year average tenure with 2.39 products already. Most loyal segment. Financially established.",
+                      "fr": "42 ans d'ancienneté moyenne avec 2,39 produits. Segment le plus fidèle. Financièrement établi.",
+                      "ar": "42 عاماً متوسط مدة العضوية مع 2.39 منتج. الشريحة الأكثر ولاءً. مستقرة مالياً."},
+    "seg_reason_1":  {"en": "$108K average income. Not yet converted to insurance despite financial qualification.",
+                      "fr": "Revenu moyen de 108K$. Pas encore converti à l'assurance malgré la qualification financière.",
+                      "ar": "متوسط دخل 108 ألف دولار. لم يتحول بعد للتأمين رغم الأهلية المالية."},
+    "seg_reason_2":  {"en": "Long-tenure members with room to grow from 1 product to 2.",
+                      "fr": "Membres de longue date avec de la place pour passer d'1 produit à 2.",
+                      "ar": "أعضاء قدامى لديهم مجال للنمو من منتج واحد إلى منتجين."},
+    "seg_reason_5":  {"en": "87% claims users and high income but lower readiness than Cluster 7.",
+                      "fr": "87% d'utilisateurs de sinistres et revenus élevés mais moins prêts que le Cluster 7.",
+                      "ar": "87% من مستخدمي المطالبات ودخل مرتفع لكن استعداد أقل من المجموعة 7."},
+    "seg_reason_4":  {"en": "Moderate propensity. Good third-wave target after higher-priority clusters.",
+                      "fr": "Propension modérée. Bonne cible de troisième vague après les clusters prioritaires.",
+                      "ar": "ميل معتدل. هدف جيد للموجة الثالثة بعد الشرائح ذات الأولوية الأعلى."},
+    "seg_reason_0":  {"en": "1,071 households with near-zero propensity. Preserve relationship, do not push offers.",
+                      "fr": "1 071 ménages avec propension quasi nulle. Préserver la relation, ne pas forcer les offres.",
+                      "ar": "1,071 أسرة بميل قريب من الصفر. حافظ على العلاقة، لا تفرض العروض."},
+    "seg_reason_6":  {"en": "516 high claims users not ready for additional products. High engagement, low conversion readiness.",
+                      "fr": "516 utilisateurs de sinistres non prêts pour des produits supplémentaires.",
+                      "ar": "516 من مستخدمي المطالبات العالية غير مستعدين لمنتجات إضافية."},
+}
+
+
+def t(key: str, lang: str) -> str:
+    """Get translation for key in given language. Falls back to English."""
+    entry = T.get(key, {})
+    return entry.get(lang, entry.get("en", key))
