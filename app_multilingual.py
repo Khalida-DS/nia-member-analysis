@@ -283,6 +283,7 @@ with st.sidebar:
       <b style="color:#A8C4E8">{t('sidebar_stack', lang)}</b><br>
       Python 3.11 · scikit-learn<br>
       XGBoost · pandas · Streamlit
+K-Means · Huber Regressor
     </div>
     """, unsafe_allow_html=True)
 
